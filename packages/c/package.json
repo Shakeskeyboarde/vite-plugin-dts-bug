@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "c",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "vite build"
+  },
+  "type": "module",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "default": "./lib/index.js"
+  }
+}

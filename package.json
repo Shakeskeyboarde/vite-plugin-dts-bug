@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "root",
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "packages/c",
+    "packages/b",
+    "packages/a"
+  ],
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-plugin-checker": "^0.6.2",
+    "vite-plugin-dts": "^3.6.2"
+  }
+}

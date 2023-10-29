@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "a",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "vite build"
+  },
+  "type": "module",
+  "dependencies": {
+    "b": "*"
+  }
+}
