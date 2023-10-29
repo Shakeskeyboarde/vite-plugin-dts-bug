@@ -16,7 +16,7 @@ The bug still exists in v3.6.2.
 
 This will produce the `error TS7006: Parameter 'response' implicitly has an 'any' type.` error in the `a` package [src/index.ts](packages/a/src/index.ts) file at line 8.
 
-If you check the emitted [lib/index.d.ts](packages/b/lib/index.d.ts) type declaration file in the `b` package, you will see that type of the exports `client` instance is `any`.
+If you check the emitted [lib/index.d.ts](packages/b/lib/index.d.ts) type declaration file in the `b` package, you will see that type of the exported `client` instance is `any`.
 
 ```ts
 export declare const client: any;
@@ -27,6 +27,12 @@ It _should_ have a type which uses an inlined `import(...)` statement.
 ```ts
 export declare const client: import("c").Client;
 ```
+
+This repro is a monorepo, but the bug could also if the three packages were in separate repos. The packages in this monorepo are as follows.
+
+- `a` represents an "app" which is the end consumer of the `b` package. This is where the error becomes visible due to an unexpected `any` type, which leads to the `TS7006` error.
+- `b` represents an "internal" library which provides a pre-configured singleton client instance. In the original case, this was a DynamoDB Table client which implements business logic on top of the raw AWS SDK client. The exported client in this instance is a `const` with an implicit type which is implied by assigning the value returned by invoking the client factory. Everything _looks_ correct in the source code of this library, and the library builds without error. However, the build output is not as expected.
+- `c` represents an "external" library which provides a general purpose client factory. Nothing wrong here, but it's required to demonstrate the bug.
 
 ## Workaround
 
