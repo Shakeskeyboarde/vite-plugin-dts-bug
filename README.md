@@ -1,4 +1,4 @@
-# Bug Repro for `vite-plugin-dts'
+# Bug repro for `vite-plugin-dts'
 
 Bug: https://github.com/qmhc/vite-plugin-dts/issues/280
 
@@ -10,9 +10,9 @@ The bug still exists in v3.6.2.
 
 ## Steps to reproduce
 
-1. Clone this repo
-2. Run `npm install`
-3. Run `npm test`
+1. Clone this repo.
+2. Run `npm install` at the repo root.
+3. Run `npm test` at the repo root.
 
 This will produce the `error TS7006: Parameter 'response' implicitly has an 'any' type.` error in the `a` package [src/index.ts](packages/a/src/index.ts) file at line 8.
 
