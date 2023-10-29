@@ -2,6 +2,9 @@
   "private": true,
   "name": "root",
   "version": "0.0.0",
+  "scripts": {
+    "test": "npm -ws test"
+  },
   "type": "module",
   "workspaces": [
     "packages/c",
