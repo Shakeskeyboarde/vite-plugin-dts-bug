@@ -28,7 +28,7 @@ It _should_ have a type which uses an inlined `import(...)` statement.
 export declare const client: import("c").Client;
 ```
 
-This repro is a monorepo, but the bug could also if the three packages were in separate repos. The packages in this monorepo are as follows.
+This repro is a monorepo, but the bug could also occur if the three packages were separate repos. The packages in this monorepo are as follows.
 
 - `a` represents an "app" which is the end consumer of the `b` package. This is where the error becomes visible due to an unexpected `any` type, which leads to the `TS7006` error.
 - `b` represents an "internal" library which provides a pre-configured singleton client instance. In the original case, this was a DynamoDB Table client which implements business logic on top of the raw AWS SDK client. The exported client in this instance is a `const` with an implicit type which is implied by assigning the value returned by invoking the client factory. Everything _looks_ correct in the source code of this library, and the library builds without error. However, the build output is not as expected.
